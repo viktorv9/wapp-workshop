@@ -1,8 +1,17 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using wapp_workshop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.ConfigureKestrel((_, options) =>
+{
+    options.ListenAnyIP(5001, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+        listenOptions.UseHttps();
+    });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
