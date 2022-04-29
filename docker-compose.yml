@@ -1,0 +1,15 @@
+services:
+  database:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    restart: always
+    ports:
+      - 1433:1433
+    volumes:
+      - database:/var/opt/mssql
+    env_file:
+      - .env
+
+volumes:
+  database: null
