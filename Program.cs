@@ -9,7 +9,7 @@ builder.WebHost.ConfigureKestrel((_, options) =>
     options.ListenAnyIP(5001, listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-        listenOptions.UseHttps();
+        // listenOptions.UseHttps();
     });
 });
 // Add services to the container.
@@ -34,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
