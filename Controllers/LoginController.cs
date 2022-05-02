@@ -8,12 +8,9 @@ namespace wapp_workshop.Controllers;
 public class LoginController : ControllerBase
 {
     [HttpPost(Name = "Login")]
-    public IActionResult Post()
+    public IActionResult Post([FromBody] Login login)
     {
-        string usernameParam = Request.Form["username"];
-        string passwordParam = Request.Form["password"];
-        
-        if (usernameParam == "username" && passwordParam == "password")
+        if (login.username == "username" && login.password == "password")
         {
             return Ok("login success");
         }
@@ -23,16 +20,13 @@ public class LoginController : ControllerBase
 
 
     // [HttpPost(Name = "Login")]
-    // public IActionResult Post()
+    // public IActionResult Post([FromBody] Login login)
     // {
-    //     string usernameParam = Request.Form["username"];
-    //     string passwordParam = Request.Form["password"];
-    //
     //     // This would usually be in your database.
     //     var correctSalt = "salt";
     //     var correctPassword = "KL5SstCEoc3YHdhTme0O9oG0c4E7sJ5m12KmlTkBbx4="; // password
     //
-    //     if (usernameParam == "username" && correctPassword == HashPassword(passwordParam, correctSalt))
+    //     if (login.username == "username" && correctPassword == HashPassword(login.password, correctSalt))
     //     {
     //         return Ok("login success");
     //     }
@@ -40,7 +34,7 @@ public class LoginController : ControllerBase
     //     return Ok("login failed");
     // }
 
-    public string HashPassword(string password, string salt)
+    private string HashPassword(string password, string salt)
     {
         var hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
             password: password,
