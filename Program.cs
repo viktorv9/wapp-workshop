@@ -23,6 +23,7 @@ builder.Services.AddSwaggerGen();
 // {
 //     options.UseSqlServer(builder.Configuration.GetConnectionString("default"));
 // });
+// builder.Services.AddScoped<IListingService, ListingService>();
 
 var app = builder.Build();
 
