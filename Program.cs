@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
-using wapp_workshop.Models;
+// using wapp_workshop.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,10 +19,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AIRBNB2022Context>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("default"));
-});
+// builder.Services.AddDbContext<AIRBNB2022Context>(options =>
+// {
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("default"));
+// });
 
 var app = builder.Build();
 
