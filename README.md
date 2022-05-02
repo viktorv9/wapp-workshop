@@ -32,3 +32,11 @@ Repository Pattern &amp; Cryptographic Failures
 13. (bonus) The `ListingService` now uses the `Listing` model throughout. In the last workshop we learned this isn't a great idea (remember?). Hint: `ListingsController.cs`. Create and use DTOs to mitigate this problem.
 
 ## Workshop part 2
+(You can complete this part without the code from part 1.)
+
+1. Install [wireshark](https://www.wireshark.org/#download). (On mac, you also need to install ChmodBPF, this is shipped with the installer.)
+2. In `Program.cs` comment out `listenOptions.UseHttps();` and `app.UseHttpsRedirection();`.
+3. Start the dotnet application and launch Wireshark.
+4. In wireshark, capture the traffic of interface `Loopback: lo0`
+5. Add the following filter to only capture http traffic of this application port: `tcp.port == 5001 && http`
+6. Now make a request to `http://localhost:5001/weatherforecast`
