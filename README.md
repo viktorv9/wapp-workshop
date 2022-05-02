@@ -39,4 +39,11 @@ Repository Pattern &amp; Cryptographic Failures
 3. Start the dotnet application and launch Wireshark.
 4. In wireshark, capture the traffic of interface `Loopback: lo0`
 5. Add the following filter to only capture http traffic of this application port: `tcp.port == 5001 && http`
-6. Now make a request to `http://localhost:5001/weatherforecast`
+6. Now make a post request to `http://localhost:5001/login`
+7. In wireshark, check the traffic of the http request.
+8. To fix this go to Program.cs and uncomment `listenOptions.UseHttps();` and `app.UseHttpsRedirection();`.
+9. Now make a post request to `http://localhost:5001/login`
+10. In wireshark add the following filter to only capture https traffic of this application port: `tcp.port == 5001 && ssl`
+11. To prevent passwords from being saved in plain text you can use hashing.
+12. In `LoginController.cs` uncomment the second login method and comment the first one out.
+13. Now make a post request to `http://localhost:5001/login`
