@@ -8,6 +8,7 @@ Repository Pattern &amp; Cryptographic Failures
 - .NET 6 or higher
 - .NET EF cli tools (`dotnet tool install --global dotnet-ef`)
 - .NET aspnet-codegenerator (`dotnet tool install -g dotnet-aspnet-codegenerator`)
+- Wireshark is installed (On mac, you also need to install ChmodBPF, this is shipped with the installer.)
 
 ## Useful links
 
