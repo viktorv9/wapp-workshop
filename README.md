@@ -34,16 +34,18 @@ Repository Pattern &amp; Cryptographic Failures
 ## Workshop part 2
 (You can complete this part without the code from part 1.)
 
+### In transit
 1. Install [wireshark](https://www.wireshark.org/#download). (On mac, you also need to install ChmodBPF, this is shipped with the installer.)
-2. In `Program.cs` comment out `listenOptions.UseHttps();` and `app.UseHttpsRedirection();`.
-3. Start the dotnet application and launch Wireshark.
-4. In wireshark, capture the traffic of interface `Loopback: lo0`
-5. Add the following filter to only capture http traffic of this application port: `tcp.port == 5001 && http`
-6. Now make a post request to `http://localhost:5001/login`
-7. In wireshark, check the traffic of the http request.
-8. To fix this go to Program.cs and uncomment `listenOptions.UseHttps();` and `app.UseHttpsRedirection();`.
-9. Now make a post request to `http://localhost:5001/login`
-10. In wireshark add the following filter to only capture https traffic of this application port: `tcp.port == 5001 && ssl`
-11. To prevent passwords from being saved in plain text you can use hashing.
-12. In `LoginController.cs` uncomment the second login method and comment the first one out.
-13. Now make a post request to `http://localhost:5001/login`
+2. Start the dotnet application and launch Wireshark.
+3. In wireshark, capture the traffic of interface `Loopback: lo0`
+4. Add the following filter to only capture http traffic of this application port: `tcp.port == 5001 && http`
+5. Now make a post request to `http://localhost:5001/login` using `username` and `password` as parameters.
+6. In wireshark, check the traffic of the http request. Click on the request and open `JavaScript Object Notation: application/json`. You should be able to see the username and password that you send.
+7. To fix this go to Program.cs and uncomment `listenOptions.UseHttps();` and `app.UseHttpsRedirection();`. 
+8. In wireshark add the following filter to only capture https traffic of this application port: `tcp.port == 5001 && ssl`.
+9. Now make a post request to `https://localhost:5001/login` using `username` and `password` as parameters. You should see a request but the content is encrypted.
+
+### In the database
+10. To prevent passwords from being saved in plain text you can use hashing.
+11. In `LoginController.cs` uncomment the second login method and comment the first one out.
+12. Now make a post request to `https://localhost:5001/login` using `username` and `password` as parameters. You should get a response saying that the login was successful.
